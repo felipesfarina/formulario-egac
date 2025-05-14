@@ -1,23 +1,22 @@
 const express = require('express');
+const serverless = require('serverless-http');
 const app = express();
-const path = require('path');
+const router = express.Router();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/form.html'));
+
+router.get('/', (req, res) => {
+  res.sendFile(__dirname + '/../public/form.html');
 });
 
-app.post('/cadastrar', (req, res) => {
-  const { nomeProduto, tipo, preco, quantidade } = req.body;
-  res.send(`
-    <h1>Produto cadastrado com sucesso!</h1>
-    <p><strong>Nome:</strong> ${nomeProduto}</p>
-    <p><strong>Tipo:</strong> ${tipo}</p>
-    <p><strong>Preço:</strong> R$ ${preco}</p>
-    <p><strong>Quantidade:</strong> ${quantidade} unidades</p>
-    <a href="/">Voltar</a>
-  `);
+
+router.post('/submit', (req, res) => {
+  const { nome, email } = req.body;
+  res.send(`Dados recebidos: Nome = ${nome}, Email = ${email}`);
 });
 
-module.exports = app;
+app.use('/', router);
+
+module.exports.handler = serverless(app);
