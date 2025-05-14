@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Produto Agropecuário</title>
+</head>
+<body>
+  <h1>Cadastro de Produto Agropecuário</h1>
+  <form action="/api/cadastrar" method="POST">
+    <label>Nome do Produto:</label>
+    <input type="text" name="nomeProduto" required><br><br>
+
+    <label>Tipo:</label>
+    <select name="tipo" required>
+      <option value="Ração">Ração</option>
+      <option value="Fertilizante">Fertilizante</option>
+      <option value="Semente">Semente</option>
+      <option value="Equipamento">Equipamento</option>
+    </select><br><br>
+
+    <label>Preço (R$):</label>
+    <input type="number" name="preco" step="0.01" required><br><br>
+
+    <label>Quantidade:</label>
+    <input type="number" name="quantidade" required><br><br>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+</body>
+</html>
